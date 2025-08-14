@@ -60,27 +60,24 @@ INSERT INTO Shippings (shipping_id, status, customer_id) VALUES
 (9, 'Pending', 8),
 (10, 'Delivered', 10);
 
--- Представление: part_1 task_1
--- Найдите всех клиентов из страны 'USA', которым больше 25 лет
-CREATE VIEW p1_task_1 AS
+-- Задание : part_1 task_1
+-- Найдите всех клиентов из страны 'USA', которым больше 25 лет.
 SELECT * 
 FROM 
 	Customers 
 WHERE 
 	country = 'USA' AND age > 25;
 
--- Представление:part_1 task_2
+-- Задание :part_1 task_2
 -- Выведите все заказы, у которых сумма (amount) больше 1000.
-CREATE VIEW p1_task_2 AS
 SELECT * 
 FROM 
 	Orders 
 WHERE 
 	amount > 1000;
 
--- Представление: part_2 task_1
--- Получите список заказов вместе с именем клиента, который сделал заказ
-CREATE VIEW p2_task_1 AS
+-- Задание : part_2 task_1
+-- Получите список заказов вместе с именем клиента, который сделал заказ.
 SELECT 
 	c.first_name, 
 	c.last_name, 
@@ -91,9 +88,8 @@ FROM
 INNER JOIN 
 	Orders o ON c.customer_id = o.customer_id; 
 
--- Представление: part_2 task_2
+-- Задание : part_2 task_2
 -- Выведите список доставок со статусом и именем клиента.
-CREATE VIEW p2_task_2 AS
 SELECT 
   	s.status,
   	c.first_name,
@@ -103,9 +99,8 @@ FROM
 JOIN 
 	Customers c ON s.customer_id = c.customer_id;
 
--- Представление: part_3 task_1
+-- Задание : part_3 task_1
 -- Подсчитайте количество клиентов в каждой стране.
-CREATE VIEW p3_task_1 AS
 SELECT 
 	country, 
 	count(*) AS count
@@ -114,21 +109,19 @@ FROM
 GROUP BY 
 	country;
 
--- Представление: part_3 task_2
--- Посчитайте общее количество заказов и среднюю сумму по каждому товару
-CREATE VIEW p3_task_2 As
+-- Задание : part_3 task_2
+-- Посчитайте общее количество заказов и среднюю сумму по каждому товару.
 SELECT 
 	item, 
 	count(*) AS order_count, 
-	AVG(amount) AS average_amount
+	ROUND(AVG(amount), 2) AS average_amount
 FROM 
 	Orders
 GROUP BY 
 	item;
 
--- Представление: part_4 task_1
--- Выведите список клиентов, отсортированный по возрасту по убыванию
-CREATE VIEW p4_task_1 as
+-- Задание : part_4 task_1
+-- Выведите список клиентов, отсортированный по возрасту по убыванию.
 SELECT 
 	first_name, 
 	last_name, 
@@ -138,9 +131,8 @@ FROM
 ORDER BY 
 	age DESC;
 
--- Представление: part_5 task_1
+-- Задание : part_5 task_1
 -- Найдите всех клиентов, которые сделали заказ с максимальной суммой.
-CREATE VIEW p5_task_1 AS
 SELECT 
 	c.first_name, 
 	c.last_name, 
@@ -157,9 +149,8 @@ WHERE
   			Orders
 );
 
--- Представление: part_6 task_1
+-- Задание : part_6 task_1
 -- Для каждого заказа добавьте колонку с суммой всех заказов этого клиента (используя оконную функцию).
-CREATE VIEW p6_task_1 as
 SELECT 
   	o.order_id,
   	o.item,
@@ -174,7 +165,7 @@ JOIN
 ORDER BY 
 	order_id ASC;
 
--- Представление: part_7 task_1
+-- Задание : part_7 task_1
 /*
 Найдите клиентов, которые:
 1. Сделали хотя бы 2 заказа (любых),
@@ -185,7 +176,6 @@ ORDER BY
 ● общую сумму заказов,
 ● страну проживания.
 */
-CREATE VIEW p7_task_1 as
 SELECT 
  	CONCAT(c.first_name, ' ', c.last_name) AS full_name,
   	COUNT(o.order_id) AS total_orders,
