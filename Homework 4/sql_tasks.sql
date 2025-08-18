@@ -65,22 +65,22 @@ VALUES
 --2.Выбрать всех сотрудников из таблицы Employees.
 SELECT * 
 FROM 
-	Employees;
+	employees;
 
 --3. Выбрать только FirstName и LastName сотрудников из отдела 'IT'.
 SELECT 
 	first_name, 
 	last_name
 FROM 
-	Employees
+	employees
 WHERE 
 	department = 'IT';
 
 --4. Обновить Salary 'Alice Smith' до 65000.00.
 UPDATE 
-	Employees
+	employees
 SET 
-	Salary = 65000.00
+	salary = 65000.00
 WHERE 
 	first_name = 'Alice' AND last_name = 'Smith';
 
