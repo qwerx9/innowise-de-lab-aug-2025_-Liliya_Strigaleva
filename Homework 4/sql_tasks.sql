@@ -246,15 +246,29 @@ WHERE NOT EXISTS (
 DO $$
 DECLARE
     new_project_id INT;
+	employee_1_id INT;
+    employee_2_id INT;
 BEGIN
     INSERT INTO projects (project_name, budget, start_date, end_date)  
     VALUES ('Automation App Development', 130000.00, '2023-02-15', '2023-07-30')
     RETURNING project_id INTO new_project_id;
 
+	SELECT employee_id INTO employee_1_id 
+	FROM 
+		employees 
+	WHERE 
+		first_name ='Alice' AND last_name = 'Petrova';
+
+    SELECT employee_id INTO employee_2_id 
+	FROM 
+		employees 
+	WHERE 
+		first_name = 'Charlie' AND last_name = 'Brown';
+
     INSERT INTO employee_projects (employee_id, project_id, hours_worked) 
     VALUES
-        (1, new_project_id, 160),
-        (2, new_project_id, 85);
+        (employee_1_id, new_project_id, 160),
+        (employee_2_id , new_project_id, 85);
 END;
 $$;
 
