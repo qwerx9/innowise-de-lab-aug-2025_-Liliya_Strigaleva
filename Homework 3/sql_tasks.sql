@@ -201,3 +201,5 @@ GROUP BY
 	c.country
 HAVING 
 	COUNT(o.order_id) >= 2;
+
+drop table customers 
